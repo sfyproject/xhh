@@ -5,9 +5,9 @@
 1. 在主机或者开发机打包项目到deploy；
     ```
     cd litemall
-    cat ./litemall-db/sql/litemall_schema.sql > ./deploy/db/litemall.sql
-    cat ./litemall-db/sql/litemall_table.sql >> ./deploy/db/litemall.sql
-    cat ./litemall-db/sql/litemall_data.sql >> ./deploy/db/litemall.sql
+    cat ./litemall-db/sql/xhh_schema.sql > ./deploy/db/litemall.sql
+    cat ./litemall-db/sql/xhh_table.sql >> ./deploy/db/litemall.sql
+    cat ./litemall-db/sql/xhh_data.sql >> ./deploy/db/litemall.sql
     
     cd ./litemall-admin
     cnpm install

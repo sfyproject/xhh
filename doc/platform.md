@@ -28,7 +28,7 @@ litemall数据库基于nideshop中的[nideshop.sql](https://github.com/tumobi/ni
 
 litemall数据库由三个sql文件组成，在litemall-db文件夹下面的sql文件夹中：
 
-1. litemall_schema.sql
+1. xhh_schema.sql
   
    作用是创建空数据库、创建用户、设置访问权限。
    
@@ -36,13 +36,13 @@ litemall数据库由三个sql文件组成，在litemall-db文件夹下面的sql�
 
    注意，这里的sql文件不一定需要运行，开发者可以自己手动或命令行或IDE进行对应的操作即可。
    
-2. litemall_table.sql
+2. xhh_table.sql
 
    作用是创建数据库表，但是没有创建任何数据。
    
    因此，开发者可以在部署生产阶段直接使用。
  
-3. litemall_data.sql
+3. xhh_data.sql
 
    作用是创建测试数据。
       

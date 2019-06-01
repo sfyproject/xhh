@@ -1,8 +1,8 @@
-# 1 litemall系统
+# 1 xhh系统
 
 ## 1.1 简介
 
-litemall是一个简单的商场系统，基于现有的开源项目，重新实现一个完整的前后端项目，包含小程序客户端、移动客户端和网页管理端。
+xhh是一个简单的商场系统，基于现有的开源项目，重新实现一个完整的前后端项目，包含小程序客户端、移动客户端和网页管理端。
 
 ![](./pic1/1-1.png)    
 
@@ -11,35 +11,35 @@ litemall是一个简单的商场系统，基于现有的开源项目，重新实
 
 * 基础系统子系统(platform)
 
-  由数据库、litemall-core模块、litemall-db模块和litemall-all模块组成;
+  由数据库、xhh-core模块、xhh-db模块和xhh-all模块组成;
 
 * 小商场子系统(wxmall，即weixin mall)
 
-  由litemall-wx-api模块、litemall-wx模块和renard-wx模块组成；
+  由xhh-wx-api模块、xhh-wx模块和renard-wx模块组成；
 
 * 轻商城子系统(mobmall，即mobile mall)
 
-  由litemall-wx-api模块和litemall-vue模块组成。
+  由xhh-wx-api模块和xhh-vue模块组成。
   注意，目前这里移动商城子系统的后端和小商场子系统是一样的。
     
 * 管理后台子系统(admin)
 
-  由litemall-admin-api模块和litemall-admin模块组成。
+  由xhh-admin-api模块和xhh-admin模块组成。
 
 而九个模块的开发设计到三种技术栈：
 
 * Spring Boot技术栈
 
-  采用IDEA开发工具，开发litemall-core、litemall-db、litemall-admin-api、
-  litemall-wx-api和litemall-all共五个模块；
+  采用IDEA开发工具，开发xhh-core、xhh-db、xhh-admin-api、
+  xhh-wx-api和xhh-all共五个模块；
   
 * miniprogram（微信小程序）技术栈
 
-  采用微信小程序开发工具，开发litemall-wx模块和renard-wx模块；
+  采用微信小程序开发工具，开发xhh-wx模块和renard-wx模块；
   
 * Vue技术栈
 
-  采用VSC开发工具，开发litemall-admin模块和litemall-vue模块。
+  采用VSC开发工具，开发xhh-admin模块和xhh-vue模块。
 
 ### 1.1.1 项目特点
 
@@ -230,7 +230,7 @@ Spring Boot技术栈参考以下文档或者项目：
     
 ### 1.3.2 项目阶段
 
-接下来，从项目的开发、部署（测试）和上线三个阶段介绍litemall。
+接下来，从项目的开发、部署（测试）和上线三个阶段介绍xhh。
 
 ![](pic1/1-10.png)
 
@@ -277,11 +277,11 @@ Spring Boot技术栈参考以下文档或者项目：
 
 如图所示，当前开发阶段的方案：
 
-* MySQL数据访问地址`jdbc:mysql://localhost:3306/litemall`
-* litemall-wx-api后端服务地址`http://localhost:8080/wx`，数据则来自MySQL
-* litemall-admin-api后端服务地址`http://localhost:8080/admin`,数据则来自MySQL
-* litemall-admin前端访问地址`http://localhost:9527`, 数据来自litemall-admin-api
-* litemall-wx没有前端访问地址，而是直接在微信小程序工具上编译测试开发，最终会部署到微信官方平台（即不需要自己部署web服务器），而数据则来自litemall-wx-api
+* MySQL数据访问地址`jdbc:mysql://localhost:3306/xhh`
+* xhh-wx-api后端服务地址`http://localhost:8080/wx`，数据则来自MySQL
+* xhh-admin-api后端服务地址`http://localhost:8080/admin`,数据则来自MySQL
+* xhh-admin前端访问地址`http://localhost:9527`, 数据来自xhh-admin-api
+* xhh-wx没有前端访问地址，而是直接在微信小程序工具上编译测试开发，最终会部署到微信官方平台（即不需要自己部署web服务器），而数据则来自xhh-wx-api
 
 
 ### 1.4.1 数据库
@@ -291,23 +291,23 @@ Spring Boot技术栈参考以下文档或者项目：
 1. 安装MySQL;
 
 2. 创建数据库、用户权限、数据库表和测试数据;
-   数据库文件存放在litemall-db/sql文件夹中，请开发者在MySQL中
+   数据库文件存放在xhh-db/sql文件夹中，请开发者在MySQL中
    按照顺序运行以下脚本:
-   * litemall_schema.sql，用于创建数据库、用户和权限;
-   * litemall_table.sql，用于创建表;
-   * litemall_data.sql，用于导入测试数据。
+   * xhh_schema.sql，用于创建数据库、用户和权限;
+   * xhh_table.sql，用于创建表;
+   * xhh_data.sql，用于导入测试数据。
 
 注意：
 > 建议采用命令行或者MySQL Workbench。如果采用Navicat可能导入失败。
 
-如果开发者运行litemall_schema.sql失败，可以打开该文件：
+如果开发者运行xhh_schema.sql失败，可以打开该文件：
 ```
-drop database if exists litemall;
-drop user if exists 'litemall'@'localhost';
-create database litemall default character set utf8mb4 collate utf8mb4_unicode_ci;
-use litemall;
-create user 'litemall'@'localhost' identified by 'litemall123456';
-grant all privileges on litemall.* to 'litemall'@'localhost';
+drop database if exists xhh;
+drop user if exists 'xhh'@'localhost';
+create database xhh default character set utf8mb4 collate utf8mb4_unicode_ci;
+use xhh;
+create user 'xhh'@'localhost' identified by 'xhh123456';
+grant all privileges on xhh.* to 'xhh'@'localhost';
 flush privilege
 ```
 可以看到几个命令，用于创建数据库、用户和访问权限，因此开发者可以利用
@@ -326,7 +326,7 @@ flush privilege
 
    例如：
    ```
-   cd litemall
+   cd xhh
    mvn install
    ```
    
@@ -338,25 +338,25 @@ flush privilege
 
    例如：
    ```
-   cd litemall
+   cd xhh
    mvn compile
    ```
 
-   此时可以看到，litemall-wx-api等模块多了target文件夹，里面是编译出的文件。
+   此时可以看到，xhh-wx-api等模块多了target文件夹，里面是编译出的文件。
    
    或者采用IDEA的Maven插件编译本项目，点击`compile`
    
    如果采用IDEA也可以跳过当前步骤，直接步骤8（因为运行时会自动编译再运行）。
    
-8. 采用Maven命令运行本项目的litemall-all
+8. 采用Maven命令运行本项目的xhh-all
 
    例如：
    ```
-   cd litemall/litemall-all
+   cd xhh/xhh-all
    mvn spring-boot:run
    ```
    
-   如果采用IDEA，则litemall-all模块的Application类
+   如果采用IDEA，则xhh-all模块的Application类
    右键` Run Application.main()`方式运行该模块,
    
    ![](pic1/1-9.png)
@@ -366,22 +366,22 @@ flush privilege
     http://localhost:8080/wx/index/index
     http://localhost:8080/admin/index/index
     ```
-    如果出现JSON数据，则litemall-all模块运行正常。
+    如果出现JSON数据，则xhh-all模块运行正常。
     
 注意：
 > 1. 上述步骤中，既介绍了Maven命令方式，也介绍了IDEA方式，
 >    但是建议开发者开发阶段采用IDEA。
 > 2. 上述步骤只是一种实践方式，开发者可不拘泥于这些步骤，多实践。
 >    当然，如果开发者不采用这里步骤而出现问题，请自行解决。
-> 3. 开发者使用IDEA导入项目或者运行项目时可能会出现**软件卡顿**的现象，这通常是litemall-admin的
->    node_modules文件夹内自动下载了大量的litemall-admin的依赖库，当IDEA尝试索引该文件夹内的大量文件时
+> 3. 开发者使用IDEA导入项目或者运行项目时可能会出现**软件卡顿**的现象，这通常是xhh-admin的
+>    node_modules文件夹内自动下载了大量的xhh-admin的依赖库，当IDEA尝试索引该文件夹内的大量文件时
 >    则出现IDEA卡顿的现象，具体解决方式可以参见[FAQ](./FAQ.md)
 
 ### 1.4.3 微信小程序开发环境
 
 1. 安装微信小程序开发工具；
-2. 导入本项目的litemall-wx模块(或者renard-wx模块)文件夹；
-3. 编译前，请确定litemall-all模块已经运行，而litemall-wx模块的config文件夹中的api.js已经设置正确的后端数据服务地址；
+2. 导入本项目的xhh-wx模块(或者renard-wx模块)文件夹；
+3. 编译前，请确定xhh-all模块已经运行，而xhh-wx模块的config文件夹中的api.js已经设置正确的后端数据服务地址；
 4. 点击`编译`，如果出现数据和图片，则运行正常
 
 注意：
@@ -394,7 +394,7 @@ flush privilege
 2. 安装依赖库
     
     ```
-    cd litemall/litemall-admin
+    cd xhh/xhh-admin
     npm install -g cnpm --registry=https://registry.npm.taobao.org
     cnpm install
     ```
@@ -407,9 +407,9 @@ flush privilege
     然后，打开浏览器，输入`http://localhost:9527`。
     如果出现管理后台登录页面，则表明管理后台的前端运行正常；
     
-4. 请确定litemall-all模块已经运行，然后点击`登录`，如果能够成功登录，则表明管理后台的前端和后端对接成功，运行正常。
+4. 请确定xhh-all模块已经运行，然后点击`登录`，如果能够成功登录，则表明管理后台的前端和后端对接成功，运行正常。
 
-本项目采用VSC（Visual Studio Code）开发litemall-admin模块，开发者也可以采用其他熟悉的IDE。
+本项目采用VSC（Visual Studio Code）开发xhh-admin模块，开发者也可以采用其他熟悉的IDE。
 
 ### 1.4.5 项目配置
 
@@ -418,14 +418,14 @@ flush privilege
 
 **项目配置结构**
 
-1. 管理后台前端，即litemall-admin模块，配置文件在litemall-admin/config中，存在三个配置文件`dev.env.js`,`dep.env.js`
+1. 管理后台前端，即xhh-admin模块，配置文件在xhh-admin/config中，存在三个配置文件`dev.env.js`,`dep.env.js`
 和`dep.env.js`。这里面配置信息都是一样，最主要的配置是`BASE_API`，即管理后台的服务根地址。
 
    * 开发阶段，开发者运行命令`cnpm run dev`，这里就会采用`dev.env.js`配置文件；
    * 部署阶段，当开发者运行命令`cnpm run build:dep`，这里就会采用`dep.env.js`配置文件；
    * 上线阶段，当开发者运行命令`cnpm run build:prod`，这里就会采用`prod.env.js`配置文件。
 
-2. 小商场前端，即litemall-wx模块，配置文件是`litemall-wx/project.config.json`和`litemall-wx/api.js`。
+2. 小商场前端，即xhh-wx模块，配置文件是`xhh-wx/project.config.json`和`xhh-wx/api.js`。
 这里面最主要的配置信息是`project.config.json`中的`appid`，开发者需要设置自己申请的appid；
 以及`apis.js`中的`WxApiRoot`，即小商场服务根地址。
 
@@ -441,11 +441,11 @@ flush privilege
 
     ```
 
-3. 管理后台后端和小商城后端，即多个Spring Boot模块，配置文件是每个模块的`litemall-xx/src/main/java/resources`的
+3. 管理后台后端和小商城后端，即多个Spring Boot模块，配置文件是每个模块的`xhh-xx/src/main/java/resources`的
 `application.yml`和`application-xx.yml`配置文件。这里会发现每个模块都会有两个配置文件，但是实际上当前模块的配置信息
 都是在`application-xx.yml`文件中，而`application.yml`文件仅仅用于引入其他模块的配置文件。
 
-   例如litemall-all模块的`application.yml`的内容是
+   例如xhh-all模块的`application.yml`的内容是
    ```
     spring:
         profiles:
@@ -453,55 +453,55 @@ flush privilege
         message:
             encoding: UTF-8
     ```
-    因此启动litemall-all模块时，程序首先加载litemall-all的`application.yml`，然后通过`spring.profiles.active`信息
+    因此启动xhh-all模块时，程序首先加载xhh-all的`application.yml`，然后通过`spring.profiles.active`信息
     再次依次加载`application-db.yml`,`application-core.yml`,`application-admin.yml`和`application.yml-wx`四个配置文件。
     
 这里后端服务模块的配置如下所示。
 
 #### 1.4.5.1 日志配置
 
-如果开发者启动litemall-all模块，则需要配置该模块的`application.yml`文件
+如果开发者启动xhh-all模块，则需要配置该模块的`application.yml`文件
 ```
 logging:
   level:
     root:  ERROR
     org.springframework:  ERROR
     org.mybatis:  ERROR
-    org.linlinjava.litemall.core:  ERROR
-    org.linlinjava.litemall.db:  ERROR
-    org.linlinjava.litemall.admin:  ERROR
-    org.linlinjava.litemall.wx:  ERROR
-    org.linlinjava.litemall:  ERROR
+    org.linlinjava.xhh.core:  ERROR
+    org.linlinjava.xhh.db:  ERROR
+    org.linlinjava.xhh.admin:  ERROR
+    org.linlinjava.xhh.wx:  ERROR
+    org.linlinjava.xhh:  ERROR
 ```
 
 具体如何配置，请自行学习Spring Boot的日志配置。
 
-`org.linlinjava.litemall.core`定义litemall-core模块的日志级别
-`org.linlinjava.litemall.db`定义litemall-core模块的日志级别
-`org.linlinjava.litemall.wx`定义litemall-wx-api模块的日志级别
-`org.linlinjava.litemall.admin`定义litemall-admin-api模块的日志级别
-`org.linlinjava.litemall`而定义litemall所有后端模块的日志级别
+`org.linlinjava.xhh.core`定义xhh-core模块的日志级别
+`org.linlinjava.xhh.db`定义xhh-core模块的日志级别
+`org.linlinjava.xhh.wx`定义xhh-wx-api模块的日志级别
+`org.linlinjava.xhh.admin`定义xhh-admin-api模块的日志级别
+`org.linlinjava.xhh`而定义xhh所有后端模块的日志级别
 
-当然，如果开发者这里启动litemall后端模块级别是DEBUG时，可能会发现并没有很多日志，
+当然，如果开发者这里启动xhh后端模块级别是DEBUG时，可能会发现并没有很多日志，
 这是因为代码内部没有写很多日志，开发者可以根据需要添加。
 
 注意：
-> 如果开发者独立启动litemall-wx-api模块，那么则需要配置litemall-wx-api模块的
+> 如果开发者独立启动xhh-wx-api模块，那么则需要配置xhh-wx-api模块的
 > `application.yml`文件来设置日志
 
 #### 1.4.5.2 数据库连接配置
 
-在litemall-db模块的`application-db.yml`文件中配置数据库连接和druid：
+在xhh-db模块的`application-db.yml`文件中配置数据库连接和druid：
 
 ```
 
 spring:
   datasource:
     druid:
-      url:  jdbc:mysql://localhost:3306/litemall?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+      url:  jdbc:mysql://localhost:3306/xhh?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
       driver-class-name:  com.mysql.jdbc.Driver
-      username:  litemall
-      password:  litemall123456
+      username:  xhh
+      password:  xhh123456
       initial-size:  10
       max-active:  50
       min-idle:  10
@@ -519,10 +519,10 @@ spring:
 #### 1.4.5.3 微信登录配置
 
 微信登录需要配置两个地方，
-首先是小商场前端litemall-wx模块（或renard-wx模块）中`project.config.json`文件的appid
-其次是小商场后端litemall-core模块的`application-core.yml`文件：
+首先是小商场前端xhh-wx模块（或renard-wx模块）中`project.config.json`文件的appid
+其次是小商场后端xhh-core模块的`application-core.yml`文件：
 ```bash
-litemall:
+xhh:
   wx:
     app-id: wxa5b486c6b918ecfb
     app-secret: e04004829d4c383b4db7769d88dfbca1
@@ -531,14 +531,14 @@ litemall:
 这里的`app-id`和`app-secret`需要开发者在[微信公众平台](https://mp.weixin.qq.com/)注册获取。
 
 注意
-> 这里开发者可能会疑惑：小商场后端应该配置在litemall-wx-api模块的`application-wx.yml`文件更合适。
-> 这里放置在`application-core.yml`文件中是因为litemall-core模块也依赖小程序appid配置信息。
+> 这里开发者可能会疑惑：小商场后端应该配置在xhh-wx-api模块的`application-wx.yml`文件更合适。
+> 这里放置在`application-core.yml`文件中是因为xhh-core模块也依赖小程序appid配置信息。
 
 #### 1.4.5.4 微信支付配置
 
-在litemall-core模块的`application-core.yml`文件中配置微信支付：
+在xhh-core模块的`application-core.yml`文件中配置微信支付：
 ```
-litemall:
+xhh:
   wx:
     mch-id: 111111
     mch-key: xxxxxx
@@ -549,15 +549,15 @@ litemall:
 
 而这里的`notify-url`则应该是项目上线以后微信支付回调地址，当微信支付成功或者失败，
 微信商户平台将向回调地址发生成功或者失败的数据，因此需要确保该地址是
-litemall-wx-api模块的WxOrderController类的payNotify方法所服务的API地址。
+xhh-wx-api模块的WxOrderController类的payNotify方法所服务的API地址。
 
 开发阶段可以采用一些技术实现临时外网地址映射本地，开发者可以百度关键字“微信 内网穿透”自行学习。
 
 #### 1.4.5.5 邮件通知配置
 
-在litemall-core模块的`application-core.yml`文件中配置邮件通知服务：
+在xhh-core模块的`application-core.yml`文件中配置邮件通知服务：
 ```
-litemall:
+xhh:
   notify:
     mail:
       # 邮件通知配置,邮箱一般用于接收业务通知例如收到新的订单，sendto 定义邮件接收者，通常为商城运营人员
@@ -579,14 +579,14 @@ litemall:
 以后可能需要继续优化扩展。当然，如果不需要邮件通知订单信息，可以默认关闭即可。
 
 验证配置成功：
-当配置好信息以后，开发者可以运行litemall-core模块的`MailTest`测试类，
+当配置好信息以后，开发者可以运行xhh-core模块的`MailTest`测试类，
 独立发送邮件，然后登录邮箱查看邮件是否成功接收。
 
 #### 1.4.5.6 短信通知配置
 
-在litemall-core模块的`application-core.yml`文件中配置短信通知服务：
+在xhh-core模块的`application-core.yml`文件中配置短信通知服务：
 ```
-litemall:
+xhh:
   notify:
     # 短消息模版通知配置
     # 短信息用于通知客户，例如发货短信通知，注意配置格式；template-name，template-templateId 请参考 NotifyType 枚举值
@@ -616,16 +616,16 @@ litemall:
 以后可能需要继续优化扩展。
 
 验证配置成功：
-当配置好信息以后，开发者可以litemall-core模块的`SmsTest`测试类中设置手机号和
+当配置好信息以后，开发者可以xhh-core模块的`SmsTest`测试类中设置手机号和
 模板所需要的参数值，独立启动`SmsTest`测试类发送短信，然后查看手机是否成功接收短信。
 
 #### 1.4.5.7 微信通知配置
 
 微信通知是微信上收到的服务通知。
 
-在litemall-core模块的`application-core.yml`文件中配置微信通知服务：
+在xhh-core模块的`application-core.yml`文件中配置微信通知服务：
 ```
-litemall:
+xhh:
   notify:
     # 微信模版通知配置
     # 微信模版用于通知客户或者运营者，注意配置格式；template-name，template-templateId 请参考 NotifyType 枚举值
@@ -659,9 +659,9 @@ litemall:
 
 物流配置是查询商品物流信息，这里主要是基于[第三方快递鸟服务](http://www.kdniao.com/api-track)。
 
-在litemall-core模块的`application-core.yml`文件中配置快递鸟物流服务：
+在xhh-core模块的`application-core.yml`文件中配置快递鸟物流服务：
 ```
-litemall:
+xhh:
   notify:
   # 快鸟物流查询配置
   express:
@@ -706,7 +706,7 @@ litemall:
 小商场查询订单详情时，如果商品已发货，小商城后端会返回详细物流信息。
 
 验证配置成功：
-当配置好信息以后，开发者可以litemall-core模块的`ExpressTest`测试类中设置快递公司编码和
+当配置好信息以后，开发者可以xhh-core模块的`ExpressTest`测试类中设置快递公司编码和
 真实测试快递单号，独立启动`ExpressTest`测试类查询物流信息。
 
 注意：
@@ -717,12 +717,12 @@ litemall:
 
 对象存储，即存储和下载文件。
 
-在litemall-core模块的`application-core.yml`文件中配置对象存储服务：
+在xhh-core模块的`application-core.yml`文件中配置对象存储服务：
 
 * 本地对象存储配置
 如果开发者采用当前主机保存上传的文件，则需要配置：
 ```
-litemall:
+xhh:
   storage:
     # 当前工作的对象存储模式，分别是local、aliyun、tencent、qiniu
     active: local
@@ -740,7 +740,7 @@ litemall:
 * 阿里云对象存储配置
 
 ```
-litemall:
+xhh:
   storage:
     # 当前工作的对象存储模式，分别是local、aliyun、tencent、qiniu
     active: aliyun
@@ -748,7 +748,7 @@ litemall:
       endpoint: oss-cn-shenzhen.aliyuncs.com
       accessKeyId: 111111
       accessKeySecret: xxxxxx
-      bucketName: litemall
+      bucketName: xhh
 ```
 
 配置方式：
@@ -758,7 +758,7 @@ litemall:
 * 腾讯云对象存储配置
 
 ```
-litemall:
+xhh:
   storage:
     # 当前工作的对象存储模式，分别是local、aliyun、tencent、qiniu
     active: tencent
@@ -768,7 +768,7 @@ litemall:
       secretId: 111111
       secretKey: xxxxxx
       region: xxxxxx
-      bucketName: litemall
+      bucketName: xhh
 ```
 
 配置方式：
@@ -778,7 +778,7 @@ litemall:
 * 七牛云对象存储配置
 
 ```
-litemall:
+xhh:
   storage:
     # 当前工作的对象存储模式，分别是local、aliyun、tencent、qiniu
     active: qiniu
@@ -787,7 +787,7 @@ litemall:
       endpoint: http://pd5cb6ulu.bkt.clouddn.com
       accessKey: 111111
       secretKey: xxxxxx
-      bucketName: litemall
+      bucketName: xhh
 ```
 
 配置方式：
@@ -807,25 +807,25 @@ litemall:
 
 其次，需要明确的是各模块之间的关系：
   
-  * litemall-wx-api模块会包含litemall-core模块和litemall-db模块，部署在服务器中
-  * litemall-admin-api模块会包含litemall-core模块和litemall-db模块，部署在服务器中
-  * litemall-all模块则会包装litemall-wx-api模块和litemall-admin-api模块；
-  * litemall-wx模块部署在微信开发者工具中，此外数据API地址指向litemall-wx-api所在服务qi地址
-  * litemall-admin编译出的静态文件放在web服务器或者tomcat服务器，此外服务器地址设置指向3中litemall-admin-api所在地址
+  * xhh-wx-api模块会包含xhh-core模块和xhh-db模块，部署在服务器中
+  * xhh-admin-api模块会包含xhh-core模块和xhh-db模块，部署在服务器中
+  * xhh-all模块则会包装xhh-wx-api模块和xhh-admin-api模块；
+  * xhh-wx模块部署在微信开发者工具中，此外数据API地址指向xhh-wx-api所在服务qi地址
+  * xhh-admin编译出的静态文件放在web服务器或者tomcat服务器，此外服务器地址设置指向3中xhh-admin-api所在地址
   
 最后，**如果项目部署云主机，则根据开发者的部署环境在以下文件中或代码中修改相应的配置。**
 
 1. MySQL数据库设置合适的用户名和密码信息；
 2. 后端服务模块设置合适的配置信息；
-3. 小商场前端litemall-wx模块`config/api.js`的`WxApiRoot`设置小商场后端服务的服务地址；
-4. 管理后台前端litemall-admin模块`config/dep.env.js`中的`BASE_API`设置管理后台后端服务的服务地址。
+3. 小商场前端xhh-wx模块`config/api.js`的`WxApiRoot`设置小商场后端服务的服务地址；
+4. 管理后台前端xhh-admin模块`config/dep.env.js`中的`BASE_API`设置管理后台后端服务的服务地址。
 
 实际上，最终的部署方案是灵活的：
 
-* 可以是同一云主机中安装一个Spring Boot服务，同时提供litemall-admin、litemall-admin-api和litemall-wx-api三种服务
-* 可以单一云主机中仅安装一个tomcat/nginx服务器部署litemall-admin静态页面分发服务，
+* 可以是同一云主机中安装一个Spring Boot服务，同时提供xhh-admin、xhh-admin-api和xhh-wx-api三种服务
+* 可以单一云主机中仅安装一个tomcat/nginx服务器部署xhh-admin静态页面分发服务，
   然后部署两个Spring Boot的后端服务；
-* 也可以把litemall-admin静态页面托管第三方cdn，然后开发者部署两个后端服务
+* 也可以把xhh-admin静态页面托管第三方cdn，然后开发者部署两个后端服务
 * 当然，甚至多个服务器，采用集群式并发提供服务。
 
 注意
@@ -900,28 +900,28 @@ sudo apt-get install mysql-client
 
 1. 在主机或者开发机打包项目到deploy；
     ```
-    cd litemall
-    cat ./litemall-db/sql/litemall_schema.sql > ./deploy/db/litemall.sql
-    cat ./litemall-db/sql/litemall_table.sql >> ./deploy/db/litemall.sql
-    cat ./litemall-db/sql/litemall_data.sql >> ./deploy/db/litemall.sql
+    cd xhh
+    cat ./xhh-db/sql/xhh_schema.sql > ./deploy/db/xhh.sql
+    cat ./xhh-db/sql/xhh_table.sql >> ./deploy/db/xhh.sql
+    cat ./xhh-db/sql/xhh_data.sql >> ./deploy/db/xhh.sql
     
-    cd ./litemall-admin
+    cd ./xhh-admin
     cnpm install
     cnpm run build:dep
     
     cd ..
     mvn clean package
-    cp -f ./litemall-all/target/litemall-all-*-exec.jar ./deploy/litemall/litemall.jar
+    cp -f ./xhh-all/target/xhh-all-*-exec.jar ./deploy/xhh/xhh.jar
     ```
     
     这里脚本的作用是：
     
     1. 把数据库文件拷贝到deploy/db文件夹；
-    2. 编译litemall-admin项目；
-    3. 编译litemall-all模块，同时把litemall-admin编译得到的静态文件拷贝到
-       litemall-all模块的static目录。
+    2. 编译xhh-admin项目；
+    3. 编译xhh-all模块，同时把xhh-admin编译得到的静态文件拷贝到
+       xhh-all模块的static目录。
        
-2. 修改litemall文件夹下面的*.yml外部配置文件，当litemall-all模块启动时会
+2. 修改xhh文件夹下面的*.yml外部配置文件，当xhh-all模块启动时会
     加载外部配置文件，而覆盖默认jar包内部的配置文件。
     例如，配置文件中一些地方需要设置成远程主机的IP地址
     
@@ -931,10 +931,10 @@ sudo apt-get install mysql-client
 存放远程主机运行的脚本，包括deploy.sh脚本和reset.sh脚本
 
 * db
-存放litemall数据库文件
+存放xhh数据库文件
 
-* litemall
-存放远程主机运行的代码，包括litemall-all二进制可执行包和litemall外部配置文件
+* xhh
+存放远程主机运行的代码，包括xhh-all二进制可执行包和xhh外部配置文件
 
 * util
 存放开发主机运行的脚本，包括package.sh脚本和lazy.sh脚本。
@@ -943,16 +943,16 @@ sudo apt-get install mysql-client
 #### 1.5.1.5 项目部署
 
 1. 远程主机环境（MySQL和JDK1.8）已经安装好，请确保云主机的安全组已经允许相应的端口。
-2. 导入db/litemall.sql
+2. 导入db/xhh.sql
     ```bash
     cd /home/ubuntu/deploy/db
-    mysql -h localhost -u $ROOT -p$PASSWORD < litemall.sql
+    mysql -h localhost -u $ROOT -p$PASSWORD < xhh.sql
     ```
 3. 启动服务
     ```bash
-    sudo service litemall stop
-    sudo ln -f -s /home/ubuntu/deploy/litemall/litemall.jar /etc/init.d/litemall
-    sudo service litemall start
+    sudo service xhh stop
+    sudo ln -f -s /home/ubuntu/deploy/xhh/xhh.jar /etc/init.d/xhh
+    sudo service xhh start
     ```
 4. 测试是否部署成功(xxx.xxx.xxx.xxx是云主机IP）：
     ```
@@ -963,7 +963,7 @@ sudo apt-get install mysql-client
 
 注意：
 > 开发者访问以上三个地址都能成功，但是管理后台点击登录时会报错网络连接不成功。
-> 这里很可能是开发者litemall-admin模块的`config/dep.env.js`或者`condig/prod.env.js`
+> 这里很可能是开发者xhh-admin模块的`config/dep.env.js`或者`condig/prod.env.js`
 > 没有设置正确的管理后台后端地址，例如这里的`http://xxx.xxx.xxx.xxx:8080/admin`
 
 #### 1.5.1.6 项目辅助脚本
@@ -996,7 +996,7 @@ sudo apt-get install mysql-client
 
 总结，当开发者设置好配置信息以后，可以在本地运行lazy.sh脚本自动一键部署:
 ```bash
-cd litemall
+cd xhh
 ./deploy/util/lazy.sh
 ```
 
@@ -1175,16 +1175,16 @@ http://www.example.com
 这里介绍小商场的前端上线过程：
 
 上线之前需要修改代码或者配置文件：
-1. litemall-wx-api模块的WxOrderController类的payNotify方法的链接换成合适的地址。
+1. xhh-wx-api模块的WxOrderController类的payNotify方法的链接换成合适的地址。
 
    注意：
    > 换成什么地址都可以，但是这里不应该暴露出来。也就是说这个地址是微信商户平台
    > 和这里的小商场后端服务之间的交互API，对外公开会存在安全隐患。
    
-2. litemall-core模块需要配置application-core.yml
+2. xhh-core模块需要配置application-core.yml
 
     ```
-    litemall:
+    xhh:
         wx:
             app-id: wxa5b486c6b918ecfb
             app-secret: e04004829d4c383b4db7769d88dfbca1
@@ -1193,9 +1193,9 @@ http://www.example.com
             notify-url: http://www.example.com/wx/order/pay-notify
     ```
     
-    这里的`litemall.wx.notify-url`就是前面开发者自定义的地址。
+    这里的`xhh.wx.notify-url`就是前面开发者自定义的地址。
     
-3. litemall-wx模块的`project.config.json`文件调整相应的值，
+3. xhh-wx模块的`project.config.json`文件调整相应的值，
    特别是`appid`要设置成开发者申请的appid。
 
 ### 1.6.4 管理后台上线
@@ -1205,9 +1205,9 @@ http://www.example.com
 当然，这里开发者需要自己的线上环境在以下文件中或代码中修改相应的配置。
 
 1. MySQL数据库设置合适的用户名和密码信息；
-2. 管理后台后端服务模块设置合适的配置信息，建议开发者参考deploy/litemall的外部配置文件，
+2. 管理后台后端服务模块设置合适的配置信息，建议开发者参考deploy/xhh的外部配置文件，
    这样可以避免开发者对模块内部的开发配置文件造成修改；
-3. 管理后台前端litemall-admin模块`config/prod.env.js`中的`BASE_API`设置管理后台后端服务的服务地址。
+3. 管理后台前端xhh-admin模块`config/prod.env.js`中的`BASE_API`设置管理后台后端服务的服务地址。
 
 ### 1.6.5 项目评估
 
@@ -1222,7 +1222,7 @@ http://www.example.com
 
 #### 1.6.6.1 管理后台前端文件启动优化
 
-litemall-admin编译得到的前端文件在第一次加载时相当耗时，这里需要一些措施来优化启动速度
+xhh-admin编译得到的前端文件在第一次加载时相当耗时，这里需要一些措施来优化启动速度
 
 * 静态文件托管CDN
 
@@ -1319,12 +1319,12 @@ litemall-admin编译得到的前端文件在第一次加载时相当耗时，这
 
 当前项目的.gitignore不是单一文件，而是多个模块都存在：
 * deploy/.gitignore
-* litemall-admin/.gitignore
-* litemall-admin-api/.gitignore
-* litemall-core/.gitignore
-* litemall-db/.gitignore
-* litemall-wx-api/.gitignore
-* litemall-all/.gitignore
+* xhh-admin/.gitignore
+* xhh-admin-api/.gitignore
+* xhh-core/.gitignore
+* xhh-db/.gitignore
+* xhh-wx-api/.gitignore
+* xhh-all/.gitignore
 * .gitignore
 
 开发者可以采用单一.gitignore文件。
@@ -1337,7 +1337,7 @@ litemall-admin编译得到的前端文件在第一次加载时相当耗时，这
 
 流程如下：
 1. util脚本是当前开发主机运行，用来打包项目和上传腾讯云主机；
-2. 打包项目时，会编译打包项目相关模块到litemall和db文件夹中；
+2. 打包项目时，会编译打包项目相关模块到xhh和db文件夹中；
 3. bin脚本是云主机运行，用来安装数据库、导入数据、启动项目服务。
 
 这里deploy部署方式比较简单不灵活，开发者可以参考开发自己的项目脚本。
@@ -1383,17 +1383,17 @@ litemall-admin编译得到的前端文件在第一次加载时相当耗时，这
 目前后端服务采用Spring Boot多模块方案，结构清晰、易于测试。
 
 但是存在一个问题，即多模块配置依赖。
-例如，litemall-db模块存在数据库配置信息，那么其他模块如何引入
-litemall-db模块的配置信息呢？
+例如，xhh-db模块存在数据库配置信息，那么其他模块如何引入
+xhh-db模块的配置信息呢？
 
-最简单的方式，就是其他模块把litemall-db模块的配置信息拷贝到自己的
+最简单的方式，就是其他模块把xhh-db模块的配置信息拷贝到自己的
 application配置文件中，但是问题就是数据库信息一旦改变则其他模块又要
 再次手动修改，非常不方便。
 
 目前本项目采用一种基于`spring.profiles.active`的方式，细节如下：
-1. litemall-db模块存在application.yml和application-db.yml两个配置文件，
+1. xhh-db模块存在application.yml和application-db.yml两个配置文件，
     在application-db.yml配置文件中存放数据库配置信息；
-2. litemall-core模块也存在application.yml和application-core.yml两个配置文件,
+2. xhh-core模块也存在application.yml和application-core.yml两个配置文件,
     在application-core.yml配置文件中存放core模块的一些配置信息，而在application.yml
     中存在这样一个配置：
     ```
@@ -1401,16 +1401,16 @@ application配置文件中，但是问题就是数据库信息一旦改变则其
         profiles:
             active: core, db
     ```
-    因此，如果单独启动litemall-core模块，则会先读取application.yml配置文件，然后基于
+    因此，如果单独启动xhh-core模块，则会先读取application.yml配置文件，然后基于
     系统会根据`spring.profiles.active`读取application-db.yml和application-core.yml配置文件，
-    因此就会自动读取litemall-db模块的配置文件。
-3. 以此类推，在litemall-all模块中存在application.yml配置文件，其中内容是
+    因此就会自动读取xhh-db模块的配置文件。
+3. 以此类推，在xhh-all模块中存在application.yml配置文件，其中内容是
     ```
     spring:
         profiles:
             active:  db, core, admin, wx
     ```
-    因此，系统启动litemall-all模块以后，则会先读取application.yml配置文件，然后基于
+    因此，系统启动xhh-all模块以后，则会先读取application.yml配置文件，然后基于
     `spring.profiles.active`进一步读取application-db.yml、application-core.yml、
     application-admin.yml和application-wx.yml四个模块的配置文件。
     
@@ -1419,11 +1419,11 @@ application配置文件中，但是问题就是数据库信息一旦改变则其
 
 这里介绍本项目的思路，就是基于Spring Boot的配置加载顺序，采用外部配置文件覆盖jar包内部配置文件。
 1. 开发阶段，系统的配置信息在模块的resources目录配置文件中；
-2. 测试或者部署阶段，系统打包成一个litemall.jar二进制jar包，jar包内部配置文件是之前
-    开发阶段的配置文件，此时在litemall.jar的同级目录创建相同的配置文件，在这些配置文件则
-    保存了测试或者部署阶段的配置信息。启动litemall.jar时，系统会读取当前目录的配置文件，而
+2. 测试或者部署阶段，系统打包成一个xhh.jar二进制jar包，jar包内部配置文件是之前
+    开发阶段的配置文件，此时在xhh.jar的同级目录创建相同的配置文件，在这些配置文件则
+    保存了测试或者部署阶段的配置信息。启动xhh.jar时，系统会读取当前目录的配置文件，而
     不再读取jar包内部的配置文件。
-3. 上线阶段，同样地，在litemall.jar包同级目录创建上线配置文件。
+3. 上线阶段，同样地，在xhh.jar包同级目录创建上线配置文件。
 
 此外，这里还可以采用另外一种思路，如下图：
 ![](pic1/1-13.png)
@@ -1468,8 +1468,8 @@ application配置文件中，但是问题就是数据库信息一旦改变则其
   * 503，业务不支持，即后端虽然定义了接口，但是还没有实现功能；
   * 504，更新数据失效，即后端采用了乐观锁更新，而并发更新时存在数据更新失效；
   * 505，更新数据失败，即后端数据库更新失败（正常情况应该更新成功）。
-* 6xx，管理后台后端业务错误码，具体见litemall-admin-api模块的`AdminResponseCode`类。
-* 7xx，小商城后端业务错误码，具体见litemall-wx-api模块的`WxResponseCode`类。
+* 6xx，管理后台后端业务错误码，具体见xhh-admin-api模块的`AdminResponseCode`类。
+* 7xx，小商城后端业务错误码，具体见xhh-wx-api模块的`WxResponseCode`类。
 
 需要指出的是，小商场后端可能返回4xx、5xx和6xx错误码；管理后台后端则可能返回4xx、5xx和7xx错误码。
 这样设计原因是方便小商场前端和管理后台前端区别对待。
