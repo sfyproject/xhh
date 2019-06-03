@@ -21,10 +21,11 @@ public class ProContentService {
     @Resource
     private ProContentMapper proContentMapper;
 
-    public void add(ProContent proContent) {
+    public Integer add(ProContent proContent) {
         proContent.setAddTime(LocalDateTime.now());
         proContent.setUpdateTime(LocalDateTime.now());
         proContentMapper.insertSelective(proContent);
+        return proContent.getId();
     }
 
     public List<ProContent> querySelective(String number, String project, Integer page, Integer limit, String sort, String order) {
@@ -54,7 +55,7 @@ public class ProContentService {
         proContentMapper.updateByPrimaryKeySelective(proContent);
     }
 
-    public Object queryById(Integer id) {
+    public ProContent queryById(Integer id) {
         return proContentMapper.selectByPrimaryKeySelective(id);
     }
 
