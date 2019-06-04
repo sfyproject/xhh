@@ -77,10 +77,12 @@ public class AdminAdminController {
         }
 
         String rawPassword = admin.getPassword();
+        // 使用密码加密器对密码进行加密保存
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodedPassword = encoder.encode(rawPassword);
         admin.setPassword(encodedPassword);
         adminService.add(admin);
+        // 添加日志文件
         logHelper.logAuthSucceed("添加管理员", username);
         return ResponseUtil.ok(admin);
     }

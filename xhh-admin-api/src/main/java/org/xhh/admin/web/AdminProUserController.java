@@ -31,7 +31,7 @@ public class AdminProUserController {
     private ProUserService proUserService;
 
     @RequiresPermissions("admin:proUser:create")
-    @RequiresPermissionsDesc(menu={"项目管理" , "项目维护"}, button="新增")
+    @RequiresPermissionsDesc(menu={"人员管理" , "项目维护"}, button="新增")
     @PostMapping("/create")
     public Object create(@RequestBody ProUser proUser) {
         logger.info("【AdminProUserController】====== create ======" + proUser.toString() );
@@ -40,7 +40,7 @@ public class AdminProUserController {
     }
 
     @RequiresPermissions("admin:proUser:list")
-    @RequiresPermissionsDesc(menu={"项目管理" , "项目维护"}, button="查询")
+    @RequiresPermissionsDesc(menu={"人员管理" , "项目维护"}, button="查询")
     @GetMapping("/list")
     public Object list(String number, String project,
                        @RequestParam(defaultValue = "1") Integer page,
@@ -52,7 +52,7 @@ public class AdminProUserController {
     }
 
     @RequiresPermissions("admin:proUser:delete")
-    @RequiresPermissionsDesc(menu = {"项目管理", "项目维护"}, button = "删除")
+    @RequiresPermissionsDesc(menu = {"人员管理", "项目维护"}, button = "删除")
     @PostMapping("/delete")
     public Object delete(@RequestBody ProUser proUser) {
         Integer id = proUser.getId();
@@ -64,7 +64,7 @@ public class AdminProUserController {
     }
 
     @RequiresPermissions("admin:proUser:update")
-    @RequiresPermissionsDesc(menu = {"项目管理", "项目编辑"}, button = "编辑")
+    @RequiresPermissionsDesc(menu = {"人员管理", "项目编辑"}, button = "编辑")
     @PostMapping("/update")
     public Object update(@RequestBody ProUser proUser) {
         Integer proContentId = proUser.getId();
@@ -77,7 +77,7 @@ public class AdminProUserController {
     }
 
     @RequiresPermissions("admin:proUser:read")
-    @RequiresPermissionsDesc(menu = {"项目管理", "项目详情"}, button = "详情")
+    @RequiresPermissionsDesc(menu = {"人员管理", "项目详情"}, button = "详情")
     @GetMapping("/detail")
     public Object detail(@NotNull Integer id) {
         return ResponseUtil.ok(proUserService.queryById(id));

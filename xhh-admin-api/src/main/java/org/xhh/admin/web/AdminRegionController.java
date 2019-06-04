@@ -2,6 +2,8 @@ package org.xhh.admin.web;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.xhh.admin.annotation.RequiresPermissionsDesc;
 import org.xhh.admin.vo.RegionVo;
 import org.xhh.core.util.ResponseUtil;
 import org.xhh.db.domain.LitemallRegion;
@@ -25,12 +27,16 @@ public class AdminRegionController {
     @Autowired
     private LitemallRegionService regionService;
 
+    @RequiresPermissions("admin:region:detail")
+    @RequiresPermissionsDesc(menu = {"行政区域", "行政区域"}, button = "详情")
     @GetMapping("/clist")
     public Object clist(@NotNull Integer id) {
         List<LitemallRegion> regionList = regionService.queryByPid(id);
         return ResponseUtil.okList(regionList);
     }
 
+    @RequiresPermissions("admin:region:list")
+    @RequiresPermissionsDesc(menu = {"行政区域", "行政区域"}, button = "查询")
     @GetMapping("/list")
     public Object list() {
         List<RegionVo> regionVoList = new ArrayList<>();

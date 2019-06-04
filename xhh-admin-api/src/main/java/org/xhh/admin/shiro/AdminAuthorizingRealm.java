@@ -31,6 +31,12 @@ public class AdminAuthorizingRealm extends AuthorizingRealm {
     @Autowired
     private LitemallPermissionService permissionService;
 
+    /**
+     * shiro安全框架设置用户权限
+     * @Date: 2019-6-4  18:44
+     * @Params: AdminAuthorizingRealm.java
+     * @Author: sunfy
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         if (principals == null) {
@@ -39,7 +45,9 @@ public class AdminAuthorizingRealm extends AuthorizingRealm {
 
         LitemallAdmin admin = (LitemallAdmin) getAvailablePrincipal(principals);
         Integer[] roleIds = admin.getRoleIds();
+        // 角色表对象
         Set<String> roles = roleService.queryByIds(roleIds);
+        // 权限表对象
         Set<String> permissions = permissionService.queryByRoleIds(roleIds);
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         info.setRoles(roles);
@@ -47,6 +55,11 @@ public class AdminAuthorizingRealm extends AuthorizingRealm {
         return info;
     }
 
+    /**
+     * 用户校验
+     * @Date: 2019-6-4  20:22
+     * @Author: sunfy
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
