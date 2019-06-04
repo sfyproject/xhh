@@ -36,16 +36,16 @@ public class AdminProContentController {
     private ProAndTaskService proAndTaskService;
 
     @RequiresPermissions("admin:pro:create")
-    @RequiresPermissionsDesc(menu={"项目管理" , "项目维护"}, button="新增")
+    @RequiresPermissionsDesc(menu = {"项目管理", "项目维护"}, button = "新增")
     @PostMapping("/create")
     public Object create(@RequestBody ProAndTask proAndTask) {
-        logger.info("【AdminProContentController】====== create ======" + proAndTask.toString() );
+        logger.info("【AdminProContentController】====== create ======" + proAndTask.toString());
         proAndTaskService.creat(proAndTask);
         return ResponseUtil.ok(proAndTask);
     }
 
     @RequiresPermissions("admin:pro:list")
-    @RequiresPermissionsDesc(menu={"项目管理" , "项目维护"}, button="查询")
+    @RequiresPermissionsDesc(menu = {"项目管理", "项目维护"}, button = "查询")
     @GetMapping("/list")
     public Object list(String number, String project,
                        @RequestParam(defaultValue = "1") Integer page,
@@ -71,13 +71,12 @@ public class AdminProContentController {
     @RequiresPermissions("admin:pro:update")
     @RequiresPermissionsDesc(menu = {"项目管理", "项目编辑"}, button = "编辑")
     @PostMapping("/update")
-    public Object update(@RequestBody ProContent proContent) {
-        Integer proContentId = proContent.getId();
-        if (proContentId == null) {
-            return ResponseUtil.badArgument();
+    public Object update(@RequestBody ProAndTask proAndTask) {
+        List<Integer> list = proAndTaskService.update(proAndTask);
+        // 删除多余数据
+        if (!list.isEmpty()) {
+            proAndTaskService.delByPorNum(list, proAndTask.getProContent().getId());
         }
-
-        proContentService.updateById(proContent);
         return ResponseUtil.ok();
     }
 
@@ -86,6 +85,13 @@ public class AdminProContentController {
     @GetMapping("/detail")
     public Object detail(@NotNull Integer id) {
         return ResponseUtil.ok(proAndTaskService.query(id));
+    }
+
+    @RequiresPermissions("admin:pro:readOnly")
+    @RequiresPermissionsDesc(menu = {"项目管理", "项目详情"}, button = "详情")
+    @GetMapping("/detailOnlyPro")
+    public Object detailOnlyPro(@NotNull Integer id) {
+        return ResponseUtil.ok(proContentService.queryById(id));
     }
 
 

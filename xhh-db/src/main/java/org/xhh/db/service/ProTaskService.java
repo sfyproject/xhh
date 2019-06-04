@@ -3,12 +3,15 @@ package org.xhh.db.service;
 import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.xhh.db.dao.ProContentMapper;
 import org.xhh.db.dao.ProTaskMapper;
+import org.xhh.db.domain.ProContent;
 import org.xhh.db.domain.ProTask;
 import org.xhh.db.domain.ProTaskExample;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +23,9 @@ public class ProTaskService {
 
     @Resource
     private ProTaskMapper proTaskMapper;
+
+    @Resource
+    private ProContentMapper proContentMapper;
 
     public void add(ProTask proTask) {
         proTask.setAddTime(LocalDateTime.now());
@@ -43,7 +49,21 @@ public class ProTaskService {
         }
 
         PageHelper.startPage(page, limit);
-        return proTaskMapper.selectByExample(example);
+
+        List<ProTask> returnProTaskList = new ArrayList<>();
+
+        for (ProTask proTask : proTaskMapper.selectByExample(example)) {
+            Integer proNum = proTask.getProNum();
+            String project = "";
+            if (proNum != null) {
+                ProContent proContent = proContentMapper.selectByPrimaryKey(proNum);
+                if (proContent != null)
+                project = proContent.getProject();
+            }
+            proTask.setProProject(project);
+            returnProTaskList.add(proTask);
+        }
+        return returnProTaskList;
     }
 
     public void deleteById(Integer id) {
