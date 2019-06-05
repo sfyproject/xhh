@@ -36,7 +36,7 @@ public class AdminProContentController {
     private ProAndTaskService proAndTaskService;
 
     @RequiresPermissions("admin:pro:create")
-    @RequiresPermissionsDesc(menu = {"项目管理", "项目管理"}, button = "新增")
+    @RequiresPermissionsDesc(menu = {"项目管理", "项目维护"}, button = "新增")
     @PostMapping("/create")
     public Object create(@RequestBody ProAndTask proAndTask) {
         logger.info("【AdminProContentController】====== create ======" + proAndTask.toString());
@@ -45,7 +45,7 @@ public class AdminProContentController {
     }
 
     @RequiresPermissions("admin:pro:list")
-    @RequiresPermissionsDesc(menu = {"项目管理", "项目管理"}, button = "查询")
+    @RequiresPermissionsDesc(menu = {"项目管理", "项目维护"}, button = "查询")
     @GetMapping("/list")
     public Object list(String number, String project,
                        @RequestParam(defaultValue = "1") Integer page,
@@ -57,7 +57,7 @@ public class AdminProContentController {
     }
 
     @RequiresPermissions("admin:pro:delete")
-    @RequiresPermissionsDesc(menu = {"项目管理", "项目管理"}, button = "删除")
+    @RequiresPermissionsDesc(menu = {"项目管理", "项目维护"}, button = "删除")
     @PostMapping("/delete")
     public Object delete(@RequestBody ProContent proContent) {
         Integer id = proContent.getId();
@@ -69,7 +69,7 @@ public class AdminProContentController {
     }
 
     @RequiresPermissions("admin:pro:update")
-    @RequiresPermissionsDesc(menu = {"项目管理", "项目管理"}, button = "编辑")
+    @RequiresPermissionsDesc(menu = {"项目管理", "项目维护"}, button = "编辑")
     @PostMapping("/update")
     public Object update(@RequestBody ProAndTask proAndTask) {
         List<Integer> list = proAndTaskService.update(proAndTask);
@@ -81,14 +81,14 @@ public class AdminProContentController {
     }
 
     @RequiresPermissions("admin:pro:read")
-    @RequiresPermissionsDesc(menu = {"项目管理", "项目管理"}, button = "详情")
+    @RequiresPermissionsDesc(menu = {"项目管理", "项目维护"}, button = "详情")
     @GetMapping("/detail")
     public Object detail(@NotNull Integer id) {
         return ResponseUtil.ok(proAndTaskService.query(id));
     }
 
     @RequiresPermissions("admin:pro:readOnly")
-    @RequiresPermissionsDesc(menu = {"项目管理", "项目管理"}, button = "详情2")
+    @RequiresPermissionsDesc(menu = {"项目管理", "项目维护"}, button = "详情2")
     @GetMapping("/detailOnlyPro")
     public Object detailOnlyPro(@NotNull Integer id) {
         return ResponseUtil.ok(proContentService.queryById(id));

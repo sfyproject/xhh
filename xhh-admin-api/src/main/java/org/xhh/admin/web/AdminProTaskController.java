@@ -2,7 +2,9 @@ package org.xhh.admin.web;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,7 @@ import org.xhh.admin.annotation.RequiresPermissionsDesc;
 import org.xhh.core.util.ResponseUtil;
 import org.xhh.core.validator.Order;
 import org.xhh.core.validator.Sort;
+import org.xhh.db.domain.LitemallAdmin;
 import org.xhh.db.domain.ProTask;
 import org.xhh.db.service.ProTaskService;
 
@@ -31,7 +34,7 @@ public class AdminProTaskController {
     private ProTaskService proTaskService;
 
     @RequiresPermissions("admin:proTask:list")
-    @RequiresPermissionsDesc(menu={"任务管理" , "任务维护"}, button="查询")
+    @RequiresPermissionsDesc(menu={"项目管理" , "任务维护"}, button="查询")
     @GetMapping("/list")
     public Object list(String sketch, String status,
                        @RequestParam(defaultValue = "1") Integer page,
@@ -43,7 +46,7 @@ public class AdminProTaskController {
     }
 
     @RequiresPermissions("admin:proTask:delete")
-    @RequiresPermissionsDesc(menu = {"任务管理", "任务维护"}, button = "删除")
+    @RequiresPermissionsDesc(menu = {"项目管理", "任务维护"}, button = "删除")
     @PostMapping("/delete")
     public Object delete(@RequestBody ProTask proTask) {
         Integer id = proTask.getId();
@@ -55,22 +58,26 @@ public class AdminProTaskController {
     }
 
     @RequiresPermissions("admin:proTask:update")
-    @RequiresPermissionsDesc(menu = {"任务管理", "任务编辑"}, button = "编辑")
+    @RequiresPermissionsDesc(menu = {"项目管理", "任务维护"}, button = "编辑")
     @PostMapping("/update")
     public Object update(@RequestBody ProTask proTask) {
-        Integer proContentId = proTask.getId();
-        if (proContentId == null) {
-            return ResponseUtil.badArgument();
-        }
-
         proTaskService.updateById(proTask);
         return ResponseUtil.ok();
     }
 
     @RequiresPermissions("admin:proTask:read")
-    @RequiresPermissionsDesc(menu = {"任务管理", "任务详情"}, button = "详情")
+    @RequiresPermissionsDesc(menu = {"项目管理", "任务维护"}, button = "详情")
     @GetMapping("/detail")
     public Object detail(@NotNull Integer id) {
-        return ResponseUtil.ok(proTaskService.queryById(id));
+        ProTask proTask = proTaskService.queryById(id);
+        // 从shiro中获取subject
+        Subject currentUser = SecurityUtils.getSubject();
+        LitemallAdmin admin = null;
+        if(currentUser != null) {
+            admin = (LitemallAdmin) currentUser.getPrincipal();
+        }
+
+        proTask.setCreaterid(admin.getUsername());
+        return ResponseUtil.ok(proTask);
     }
 }

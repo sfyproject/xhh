@@ -74,7 +74,7 @@ public class ProTaskService {
         proTaskMapper.updateByPrimaryKeySelective(proTask);
     }
 
-    public Object queryById(Integer id) {
+    public ProTask queryById(Integer id) {
         return proTaskMapper.selectByPrimaryKeySelective(id);
     }
 

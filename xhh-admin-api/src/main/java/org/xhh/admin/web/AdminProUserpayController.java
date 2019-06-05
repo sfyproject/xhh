@@ -31,7 +31,7 @@ public class AdminProUserpayController {
     private ProUserPayService proUserPayService;
 
     @RequiresPermissions("admin:proUserPay:create")
-    @RequiresPermissionsDesc(menu={"工薪管理" , "工薪维护"}, button="新增")
+    @RequiresPermissionsDesc(menu={"项目管理" , "工薪管理"}, button="新增")
     @PostMapping("/create")
     public Object create(@RequestBody ProUserpay proUserpay) {
         logger.info("【AdminProContentController】====== create ======" + proUserpay.toString() );
@@ -40,7 +40,7 @@ public class AdminProUserpayController {
     }
 
     @RequiresPermissions("admin:proUserPay:list")
-    @RequiresPermissionsDesc(menu={"工薪管理" , "工薪维护"}, button="查询")
+    @RequiresPermissionsDesc(menu={"项目管理" , "工薪管理"}, button="查询")
     @GetMapping("/list")
     public Object list(String number, String project,
                        @RequestParam(defaultValue = "1") Integer page,
@@ -52,7 +52,7 @@ public class AdminProUserpayController {
     }
 
     @RequiresPermissions("admin:proUserPay:delete")
-    @RequiresPermissionsDesc(menu = {"工薪管理", "工薪维护"}, button = "删除")
+    @RequiresPermissionsDesc(menu = {"项目管理", "工薪管理"}, button = "删除")
     @PostMapping("/delete")
     public Object delete(@RequestBody ProUserpay proUserpay) {
         Integer id = proUserpay.getId();
@@ -64,7 +64,7 @@ public class AdminProUserpayController {
     }
 
     @RequiresPermissions("admin:proUserPay:update")
-    @RequiresPermissionsDesc(menu = {"工薪管理", "工薪编辑"}, button = "编辑")
+    @RequiresPermissionsDesc(menu = {"项目管理", "工薪管理"}, button = "编辑")
     @PostMapping("/update")
     public Object update(@RequestBody ProUserpay proUserpay) {
         Integer proContentId = proUserpay.getId();
@@ -77,7 +77,7 @@ public class AdminProUserpayController {
     }
 
     @RequiresPermissions("admin:proUserPay:read")
-    @RequiresPermissionsDesc(menu = {"工薪管理", "工薪详情"}, button = "详情")
+    @RequiresPermissionsDesc(menu = {"项目管理", "工薪管理"}, button = "详情")
     @GetMapping("/detail")
     public Object detail(@NotNull Integer id) {
         return ResponseUtil.ok(proUserPayService.queryById(id));
