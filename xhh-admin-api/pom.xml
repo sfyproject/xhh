@@ -24,6 +24,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.xhh</groupId>
+            <artifactId>xhh-wx-api</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-miniapp</artifactId>
         </dependency>

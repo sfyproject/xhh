@@ -5,7 +5,7 @@
     <artifactId>xhh</artifactId>
     <version>0.1.0</version>
     <packaging>pom</packaging>
-<!--    <packaging>war</packaging>-->
+    <!--    <packaging>war</packaging>-->
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -23,7 +23,7 @@
     <modules>
         <module>xhh-core</module>
         <module>xhh-db</module>
-<!--        <module>xhh-wx-api</module>-->
+        <module>xhh-wx-api</module>
         <module>xhh-admin-api</module>
         <module>xhh-all</module>
     </modules>
@@ -40,12 +40,12 @@
                 <artifactId>xhh-db</artifactId>
                 <version>${project.version}</version>
             </dependency>
-<!--            微信接口，暂且不做开发-->
-<!--            <dependency>-->
-<!--                <groupId>org.xhh</groupId>-->
-<!--                <artifactId>litemall-wx-api</artifactId>-->
-<!--                <version>${project.version}</version>-->
-<!--            </dependency>-->
+            <!--微信接口-->
+            <dependency>
+                <groupId>org.xhh</groupId>
+                <artifactId>xhh-wx-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.xhh</groupId>
                 <artifactId>xhh-admin-api</artifactId>
@@ -168,5 +168,18 @@
             </exclusions>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.21.0</version>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
