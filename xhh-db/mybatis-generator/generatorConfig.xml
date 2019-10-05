@@ -190,5 +190,22 @@
         <table tableName="pro_userpay">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+        <!--        微秀预定使用数据表-->
+        <!--维修场地详情-->
+        <table tableName="activity">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <!--场地租赁模板-->
+        <table tableName="activitymeal">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <!--场地服务-->
+        <table tableName="activityserve">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <!--场地服务套餐-->
+        <table tableName="activityservemeal">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>
